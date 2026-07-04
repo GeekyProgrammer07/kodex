@@ -1,0 +1,54 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/client"
+}
+
+model User {
+  id          String       @id @default(cuid())
+  username    String       @unique
+  createdAt   DateTime     @default(now())
+  messages    Message[]
+  memberships RoomMember[]
+}
+
+model Room {
+  id        String       @id @default(cuid())
+  name      String?      @unique
+  type      RoomType     @default(PUBLIC)
+  createdAt DateTime     @default(now())
+  messages  Message[]
+  members   RoomMember[]
+}
+
+enum RoomType {
+  PUBLIC  // open channel — anyone can join
+  DIRECT  // 1-on-1 DM between two users
+  PRIVATE // future: small invite-only group (3-4 players)
+}
+
+model RoomMember {
+  userId   String
+  roomId   String
+  joinedAt DateTime @default(now())
+  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  room     Room     @relation(fields: [roomId], references: [id], onDelete: Cascade)
+
+  @@id([userId, roomId])
+}
+
+model Message {
+  id        String   @id @default(cuid())
+  content   String
+  createdAt DateTime @default(now())
+  senderId  String
+  roomId    String
+  sender    User     @relation(fields: [senderId], references: [id], onDelete: Cascade)
+  room      Room     @relation(fields: [roomId], references: [id], onDelete: Cascade)
+
+  @@index([roomId, createdAt])
+}

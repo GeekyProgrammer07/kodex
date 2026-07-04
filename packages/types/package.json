@@ -1,0 +1,19 @@
+{
+  "name": "@kodex/types",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./*": "./src/*.ts"
+  },
+  "scripts": {
+    "check-types": "tsc --noEmit"
+  },
+  "dependencies": {
+    "zod": "^4.0.0"
+  },
+  "devDependencies": {
+    "@kodex/typescript-config": "workspace:*",
+    "typescript": "5.9.2"
+  }
+}
