@@ -1,0 +1,17 @@
+{
+	"extends": "./base.json",
+	"compilerOptions": {
+		"target": "ESNext",
+		"module": "Preserve",
+		"moduleResolution": "bundler",
+		"lib": [
+			"ESNext"
+		],
+		"types": [
+			"bun"
+		],
+		"esModuleInterop": true,
+		"allowSyntheticDefaultImports": true,
+		"incremental": true
+	}
+}
