@@ -1,0 +1,31 @@
+{
+  "name": "@kodex/chat-service",
+  "version": "0.0.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "bun --env-file=../../.env --watch src/index.ts",
+    "build": "bun build src/index.ts --outdir dist --target bun",
+    "start": "bun --env-file=../../.env dist/index.js",
+    "check-types": "tsc --noEmit",
+    "lint": "eslint src/"
+  },
+  "dependencies": {
+    "express": "^5.2.1",
+    "ws": "^8.18.0",
+    "cors": "^2.8.5",
+    "zod": "^4.0.0",
+    "@kodex/types": "workspace:*",
+    "@kodex/db": "workspace:*",
+    "@kodex/auth": "workspace:*",
+    "@kodex/logger": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/express": "^5.0.6",
+    "@types/ws": "^8.5.14",
+    "@types/cors": "^2.8.17",
+    "@types/node": "^22.0.0",
+    "@kodex/typescript-config": "workspace:*"
+  }
+}

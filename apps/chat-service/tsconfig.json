@@ -1,0 +1,9 @@
+{
+  "extends": "@kodex/typescript-config/bun.json",
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "dist",
+    "types": ["bun", "node"]
+  },
+  "include": ["src"]
+}
